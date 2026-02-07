@@ -1,4 +1,4 @@
-]#ex1
+#ex1
 fruits = ["apple", "banana", "cherry"]
 for x in fruits:
   print(x)
