@@ -1,0 +1,69 @@
+#ex1
+def myfunc1():
+  x = "Jane"
+  def myfunc2():
+    nonlocal x
+    x = "hello"
+  myfunc2()
+  return x
+
+print(myfunc1()) 
+
+#ex2
+def changecase(func):
+  def myinner():
+    return func().upper()
+  return myinner
+
+@changecase
+def myfunction():
+  return "Hello Sally"
+
+print(myfunction())
+
+#ex3
+
+def changecase(func):
+  def myinner():
+    return func().upper()
+  return myinner
+
+@changecase
+def myfunction():
+  return "Hello Sally"
+
+@changecase
+def otherfunction():
+  return "I am speed!"
+
+print(myfunction())
+print(otherfunction())
+
+#ex4
+def changecase(func):
+  def myinner(*args, **kwargs):
+    return func(*args, **kwargs).upper()
+  return myinner
+
+@changecase
+def myfunction(nam):
+  return "Hello " + nam
+
+print(myfunction("John"))
+#ex5
+def changecase(n):
+  def changecase(func):
+    def myinner():
+      if n == 1:
+        a = func().lower()
+      else:
+        a = func().upper()
+      return a
+    return myinner
+  return changecase
+
+@changecase(1)
+def myfunction():
+  return "Hello Linus"
+
+print(myfunction())
