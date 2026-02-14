@@ -57,7 +57,7 @@
 
 # a = int(input())
 # num = list(map(int, input().split()))
-# print(max(num))
+# print(num.index(max(num))+1)
 
 
 
@@ -108,14 +108,15 @@
 
 
 # a = int(input())
-# if a<=1:
+
+# if a <= 1:
 #     print("No")
 # else:
-#     for i in range(2 , int(a**0.5)+1):
+#     for i in range(2, a):
 #         if a % i == 0:
 #             print("No")
 #             break
-#     else: 
+#     else:
 #         print("Yes")
 
 
