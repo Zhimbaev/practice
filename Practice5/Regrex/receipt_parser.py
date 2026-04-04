@@ -1,7 +1,7 @@
 import re
 import json
 
-with open("raw.txt", "r", encoding="utf-8") as f:
+with open("/Users/zamirzimbaev/Desktop/practice/Practice5/Regrex/raw.txt", "r", encoding="utf-8") as f:
     receipt = f.read()
 
 
