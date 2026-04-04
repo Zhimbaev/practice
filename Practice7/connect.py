@@ -1,32 +1,10 @@
-# connect.py
 import psycopg2
-from config import db_config
+from config import DB_CONFIG
 
-def get_conn():
+def get_connection():
     try:
-        conn = psycopg2.connect(**db_config)
+        conn = psycopg2.connect(**DB_CONFIG)
         return conn
-    except Exception as e:
-        print(f"Ошибка при подключении к базе данных: {e}")
+    except psycopg2.OperationalError as e:
+        print(f"[ERROR] Не удалось подключиться к БД: {e}")
         return None
-
-def create_table():
-    query = """
-    CREATE TABLE IF NOT EXISTS contacts (
-        id SERIAL PRIMARY KEY,
-        username VARCHAR(100) UNIQUE NOT NULL,
-        first_name VARCHAR(100),
-        phone VARCHAR(20) UNIQUE NOT NULL
-    );
-    """
-    conn = get_conn()
-    if conn:
-        try:
-            with conn.cursor() as cur:
-                cur.execute(query)
-                conn.commit()
-            print("Проверка/создание таблицы успешно завершено.")
-        except Exception as e:
-            print(f"Ошибка при создании таблицы: {e}")
-        finally:
-            conn.close()
