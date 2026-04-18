@@ -29,12 +29,12 @@ def load_sql_files():
     conn = get_connection()
     cur = conn.cursor()
 
-    f = open("functions.sql", encoding="utf-8")
+    f = open("/Users/zamirzimbaev/Desktop/practice/Practice8/functions.sql", encoding="utf-8")
     sql = f.read()
     f.close()
     cur.execute(sql)
 
-    f = open("procedures.sql", encoding="utf-8")
+    f = open("/Users/zamirzimbaev/Desktop/practice/Practice8/procedures.sql", encoding="utf-8")
     sql = f.read()
     f.close()
     cur.execute(sql)
@@ -42,7 +42,7 @@ def load_sql_files():
     conn.commit()
     cur.close()
     conn.close()
-    print("функции щагружены")
+    print("скл файлы щагружены")
 
 
 def search_by_pattern():
@@ -64,19 +64,19 @@ def search_by_pattern():
     conn.close()
 
 
-def get_paginated():
+def get_zapisi():
     limit = int(input("сколько записей показать: "))
     offset = int(input("пропустить сколько записей (0 = с начала): "))
 
     conn = get_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT * FROM get_contacts_paginated(%s, %s);", (limit, offset))
+    cur.execute("SELECT * FROM get_contacts_zapisi(%s, %s);", (limit, offset))
     rows = cur.fetchall()
 
     if rows:
         for row in rows:
-            print("ID:", row[0], " Имя:", row[1], " Телефон:", row[2])
+            print("ID:", row[0], "имя:", row[1], "телефон:", row[2])
     else:
         print("записей нет")
 
@@ -137,7 +137,7 @@ def insert_many():
     if bad_rows:
         print("эти контакты не добавлены из за неверного телефона:")
         for row in bad_rows:
-            print("  Имя:", row[0], " Телефон:", row[1])
+            print("имя:", row[0], "телефон:", row[1])
     else:
         print("все контакты успешно добавлены")
 
@@ -178,19 +178,19 @@ def main():
 
     while True:
         print("\n меню:")
-        print("1 - поиск по шаблону")
+        print("1 - поиск")
         print("2 - показать")
         print("3 - добавить или обновить контакт")
         print("4 - удалить несколько")
         print("5 - удалить контакт")
-        print("0 - выход")
+        print("0 - стоп")
 
         choice = input("выбор: ")
 
         if choice == "1":
             search_by_pattern()
         elif choice == "2":
-            get_paginated()
+            get_zapisi()
         elif choice == "3":
             upsert_contact()
         elif choice == "4":

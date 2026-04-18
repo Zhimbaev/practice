@@ -10,7 +10,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION get_contacts_paginated(lim INT, offs INT)
+CREATE OR REPLACE FUNCTION get_contacts_zapisi(lim INT, offs INT)
 RETURNS TABLE(id INT, first_name VARCHAR, phone VARCHAR) AS $$
 BEGIN
     RETURN QUERY
@@ -18,5 +18,5 @@ BEGIN
         FROM phonebook c
         ORDER BY c.id
         LIMIT lim OFFSET offs;
-END;
+END;    
 $$ LANGUAGE plpgsql;
