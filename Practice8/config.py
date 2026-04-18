@@ -1,4 +1,7 @@
-host = "localhost"
-database = "postgres"
-user = "postgres"
-password = "4oi3B7un"
+DB_CONFIG = {
+    "host": "localhost",
+    "port": 5432,
+    "dbname": "phonebook_db",
+    "user": "zamirzimbaev",
+    "password": ""
+}
