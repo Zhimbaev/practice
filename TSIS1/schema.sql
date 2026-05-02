@@ -1,20 +1,13 @@
--- -----------------------------
--- GROUPS TABLE
--- -----------------------------
 CREATE TABLE IF NOT EXISTS groups (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL
 );
 
--- базовые группы (если их ещё нет)
 INSERT INTO groups (name)
 VALUES ('Family'), ('Work'), ('Friend'), ('Other')
 ON CONFLICT (name) DO NOTHING;
 
 
--- -----------------------------
--- CONTACTS TABLE
--- -----------------------------
 CREATE TABLE IF NOT EXISTS contacts (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
@@ -25,9 +18,6 @@ CREATE TABLE IF NOT EXISTS contacts (
 );
 
 
--- -----------------------------
--- PHONES TABLE (1-to-many)
--- -----------------------------
 CREATE TABLE IF NOT EXISTS phones (
     id SERIAL PRIMARY KEY,
     contact_id INTEGER REFERENCES contacts(id) ON DELETE CASCADE,
