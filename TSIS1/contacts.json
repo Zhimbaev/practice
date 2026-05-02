@@ -1,0 +1,14 @@
+[
+  {
+    "name": "zamir",
+    "email": "zamir@zhim.com",
+    "birthday": "2007-04-20",
+    "group": "F",
+    "phones": [
+      {
+        "phone": "777777",
+        "type": "home"
+      }
+    ]
+  }
+]
