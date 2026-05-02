@@ -22,7 +22,7 @@ RED = (220, 50,  50)
 YELLOW = (240, 210, 0)
 GREEN = (50,  200, 50)
 
-SETTINGS_FILE = "settings.json"
+SETTINGS_FILE = "/Users/zamirzimbaev/Desktop/practice/TSIS4/settings.json"
 
 
 def load_settings():
@@ -249,6 +249,13 @@ def screen_settings(settings):
 
 
 def main():
+    try:
+        db.ensure_database()
+        db.create_tables()
+        db_ok = True
+    except Exception as e:
+        print(f"DB connection failed: {e}")
+        db_ok = False
     try:
         db.create_tables()
         db_ok = True

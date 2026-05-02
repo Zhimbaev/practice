@@ -10,7 +10,7 @@ def create_tables():
         conn = get_connection()
         cur = conn.cursor()
 
-        files = ["schema.sql", "procedures.sql"]
+        files = ["/Users/zamirzimbaev/Desktop/practice/TSIS1/schema.sql", "/Users/zamirzimbaev/Desktop/practice/TSIS1/procedures.sql"]
 
         for file in files:
             with open(file, encoding="utf-8") as f:

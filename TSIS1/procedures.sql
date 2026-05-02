@@ -1,33 +1,26 @@
--- удаляем старые версии процедур/функции
 DROP PROCEDURE IF EXISTS add_phone(varchar, varchar, varchar);
 DROP PROCEDURE IF EXISTS move_to_group(varchar, varchar);
 DROP FUNCTION IF EXISTS search_contacts(text);
 
-----------------------------------------------------
--- ДОБАВЛЕНИЕ ТЕЛЕФОНА К КОНТАКТУ
-----------------------------------------------------
 CREATE OR REPLACE PROCEDURE add_phone(
     p_name VARCHAR,
     p_phone VARCHAR,
-    p_type VARCHAR  -- home / work / mobile
+    p_type VARCHAR
 )
 LANGUAGE plpgsql
 AS $$
 DECLARE
     contact_id INT;
 BEGIN
-    -- ищем контакт по имени
     SELECT id INTO contact_id
     FROM contacts
     WHERE name = p_name;
 
-    -- если не нашли
     IF contact_id IS NULL THEN
         RAISE NOTICE 'Contact "%" not found', p_name;
         RETURN;
     END IF;
 
-    -- добавляем номер
     INSERT INTO phones(contact_id, phone, type)
     VALUES (contact_id, p_phone, p_type);
 
@@ -36,9 +29,6 @@ END;
 $$;
 
 
-----------------------------------------------------
--- ПЕРЕНОС КОНТАКТА В ГРУППУ
-----------------------------------------------------
 CREATE OR REPLACE PROCEDURE move_to_group(
     p_contact_name VARCHAR,
     p_group_name VARCHAR
@@ -74,9 +64,6 @@ BEGIN
 END;
 $$;
 
-----------------------------------------------------
--- ПОИСК КОНТАКТОВ (имя / email / телефон)
-----------------------------------------------------
 CREATE OR REPLACE FUNCTION search_contacts(p_text TEXT)
 RETURNS TABLE (
     id INT,

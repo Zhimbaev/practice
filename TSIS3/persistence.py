@@ -1,8 +1,8 @@
 import json
 import os
 
-SETTINGS_FILE = "settings.json"
-LEADERBOARD_FILE = "leaderboard.json"
+SETTINGS_FILE = "/Users/zamirzimbaev/Desktop/practice/TSIS3/settings.json"
+LEADERBOARD_FILE = "/Users/zamirzimbaev/Desktop/practice/TSIS3/leaderboard.json"
 
 DEFAULT_SETTINGS = {
     "sound": False,

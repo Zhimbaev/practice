@@ -4,8 +4,8 @@ DB_NAME = "snake_db"
 DB_USER = getpass.getuser()
 DB_HOST = "localhost"
 
-CELL_SIZE   = 22
-GRID_WIDTH  = 26
+CELL_SIZE = 22
+GRID_WIDTH = 26
 GRID_HEIGHT = 26
 
 SCREEN_W = CELL_SIZE * GRID_WIDTH
@@ -21,9 +21,9 @@ FOOD_TYPES = [
 ]
 POISON_COLOR = (100, 0,  20)
 PU_COLORS = {
-    "speed": (0,   200, 220),
+    "speed": (0, 200, 220),
     "slow": (180, 100, 220),
-    "shield": (50,  200, 50),
+    "shield": (50, 200, 50),
 }
 
 DEFAULT_SETTINGS = {

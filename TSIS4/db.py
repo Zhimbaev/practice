@@ -10,6 +10,32 @@ def get_conn():
     )
 
 
+import psycopg2
+from psycopg2 import sql
+import config
+
+
+def ensure_database():
+    conn = psycopg2.connect(
+        dbname="postgres",
+        user=config.DB_USER,
+        host=config.DB_HOST
+    )
+    conn.autocommit = True
+    cur = conn.cursor()
+
+    cur.execute("SELECT 1 FROM pg_database WHERE datname = %s", (config.DB_NAME,))
+    exists = cur.fetchone()
+
+    if not exists:
+        cur.execute(sql.SQL("CREATE DATABASE {}").format(
+            sql.Identifier(config.DB_NAME)
+        ))
+        print(f"Database {config.DB_NAME} created")
+
+    cur.close()
+    conn.close()
+
 def create_tables():
     conn = get_conn()
     cur  = conn.cursor()
